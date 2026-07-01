@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You, Rishita</title>
+    <!-- Google Fonts for Aesthetic Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #fff5f5 0%, #f0f4ff 100%);
+            --card-bg: rgba(255, 255, 255, 0.75);
+            --text-main: #2d3748;
+            --text-muted: #718096;
+            --accent-pink: #ff7675;
+            --accent-blue: #74b9ff;
+            --shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        /* Floating background elements for depth */
+        .floating-circles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(5px);
+            animation: float 8s infinite ease-in-out;
+        }
+
+        .circle-1 { width: 120px; height: 120px; top: 15%; left: 10%; animation-delay: 0s; }
+        .circle-2 { width: 180px; height: 180px; bottom: 15%; right: 8%; animation-delay: 2s; }
+        .circle-3 { width: 90px; height: 90px; bottom: 20%; left: 15%; animation-delay: 4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        /* Main Glassmorphism Card */
+        .container {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 50px 40px;
+            border-radius: 32px;
+            width: 100%;
+            max-width: 540px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Cute Animated Emoji/Icon Header */
+        .icon-header {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: pulse 2.5s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #4a4a4a;
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            color: var(--accent-pink);
+            position: relative;
+            display: inline-block;
+        }
+
+        .message-box {
+            margin: 30px 0;
+            line-height: 1.8;
+            font-weight: 400;
+            color: #4a5568;
+            font-size: 1.05rem;
+            text-align: center;
+        }
+
+        .message-box p {
+            margin-bottom: 18px;
+        }
+
+        /* Interactive Promise Blocks */
+        .promises {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .promise-card {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 16px;
+            border-radius: 16px;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .promise-card:hover {
+            background: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.02);
+            border-color: rgba(255, 118, 117, 0.2);
+        }
+
+        /* Aesthetic Action Button */
+        .btn-melt {
+            background: linear-gradient(135deg, #ff7675 0%, #ff8e8e 100%);
+            color: white;
+            border: none;
+            padding: 16px 36px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 35px;
+            box-shadow: 0 10px 25px rgba(255, 118, 117, 0.3);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-melt:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 118, 117, 0.4);
+        }
+
+        .btn-melt:active {
+            transform: translateY(-1px);
+        }
+
+        /* Sparkle/Heart Particle Effect CSS */
+        .heart-particle {
+            position: absolute;
+            pointer-events: none;
+            font-size: 1.5rem;
+            animation: flyUp 1.5s linear forwards;
+            z-index: 10;
+        }
+
+        @keyframes flyUp {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-120px) scale(0); opacity: 0; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 40px 20px; }
+            h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="floating-circles">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+    </div>
+
+    <div class="container">
+        <div class="icon-header">🥺❤️‍🩹</div>
+        <h1>Hey <span class="highlight">Rishita</span></h1>
+        
+        <div class="message-box">
+            <p>Pata hai tere nakhre sirf mere liye hain, aur main hamesha unhe jhelne ke liye taiyar hu. Par sach me... kabhi kabhi humara bhi dil dukhta hai na?</p>
+            <p style="font-weight: 600; color: var(--text-main);">Tu toh dil ke paas hai, hamesha.</p>
+            <p>Ab ye cold replies band karo, gussa thuk do, aur ek choti si cute smile de do please? Everything is perfectly fine here. ✨</p>
+        </div>
+
+        <div class="promises">
+            <div class="promise-card">✨ No more unnecessary dynamic tests</div>
+            <div class="promise-card">🔒 Your permanent ultimate safe space</div>
+            <div class="promise-card">🧸 Priority access to my absolute softest side</div>
+        </div>
+
+        <button class="btn-melt" onclick="createHearts(event)">Forgo Gussa & Smile ✨</button>
+    </div>
+
+    <script>
+        function createHearts(event) {
+            const button = event.currentTarget;
+            
+            // Generate exploding soft emojis on click
+            const emojis = ['💖', '🫂', '✨', '🥺', '🌸'];
+            
+            for (let i = 0; i < 12; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('heart-particle');
+                particle.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                
+                // Position randomly inside the page body near the button click
+                const rect = button.getBoundingClientRect();
+                const x = rect.left + rect.width / 2 + (Math.random() - 0.5) * 160;
+                const y = rect.top + rect.height / 2 + (Math.random() - 0.5) * 40;
+                
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+                
+                // Add minor random horizontal drifts
+                particle.style.setProperty('--x-drift', `${(Math.random() - 0.5) * 50}px`);
+                
+                document.body.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, 1500);
+            }
+            
+            // Subtle internal text transformation after click
+            button.innerText = "Thank You! ❤️";
+            button.style.background = "linear-gradient(135deg, #55efc4 0%, #81ecec 100%)";
+            button.style.boxShadow = "0 10px 25px rgba(85, 239, 196, 0.3)";
+        }
+    </script>
+</body>
+</html>
