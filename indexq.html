@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To Rishita</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Quicksand:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF4EF;
+    --blush:#F3D4DC;
+    --rose:#DD9CAA;
+    --mauve-deep:#5B4048;
+    --lavender:#C9B3D9;
+    --sage:#93A788;
+    --gold:#D9AE6B;
+    --ink:#4A3A40;
+    --shadow: 0 20px 60px -20px rgba(91,64,72,0.25);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Quicksand', sans-serif;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 0%, rgba(243,212,220,0.55), transparent 60%),
+      radial-gradient(ellipse 70% 50% at 85% 15%, rgba(201,179,217,0.35), transparent 60%),
+      var(--cream);
+    color:var(--ink);
+    overflow-x:hidden;
+    min-height:100vh;
+  }
+
+  /* ---------- ambient petals ---------- */
+  #petal-field{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:2;
+    overflow:hidden;
+  }
+  .petal{
+    position:absolute;
+    top:-5vh;
+    opacity:0.85;
+    will-change:transform;
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+  .petal svg{ display:block; filter:drop-shadow(0 2px 4px rgba(91,64,72,0.12)); }
+  @keyframes fall{
+    0%{ transform: translate(0,-8vh) rotate(0deg); }
+    100%{ transform: translate(var(--drift,40px), 110vh) rotate(360deg); }
+  }
+
+  section{
+    position:relative;
+    z-index:3;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:8vh 6vw;
+    text-align:center;
+  }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition: opacity 0.9s cubic-bezier(.22,1,.36,1), transform 0.9s cubic-bezier(.22,1,.36,1);
+  }
+  .reveal.in{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  .eyebrow{
+    font-family:'Quicksand',sans-serif;
+    font-weight:600;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    font-size:0.68rem;
+    color:var(--rose);
+    margin-bottom:1.4rem;
+  }
+
+  h1, h2{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    line-height:1.12;
+    color:var(--mauve-deep);
+  }
+
+  .script{
+    font-family:'Caveat', cursive;
+    color:var(--rose);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{ gap:0; }
+  .hero-vine{
+    width:min(70vw, 340px);
+    margin-bottom:0.5rem;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 7vw, 4.6rem);
+    font-style:italic;
+  }
+  .hero .name{
+    font-family:'Caveat', cursive;
+    font-style:normal;
+    font-size:1.25em;
+    color:var(--rose);
+    display:inline-block;
+  }
+  .hero p.sub{
+    margin-top:1.2rem;
+    font-size:1.05rem;
+    color:#8a6f76;
+    max-width:32ch;
+  }
+  .scroll-hint{
+    margin-top:3.2rem;
+    font-size:0.75rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--rose);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:0.5rem;
+    animation: bob 2.4s ease-in-out infinite;
+  }
+  @keyframes bob{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(8px);} }
+
+  /* ---------- PAGE SECTIONS ---------- */
+  .page{ max-width:640px; margin:0 auto; }
+  .page .mark{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:2.4rem;
+    color:var(--lavender);
+    margin-bottom:1rem;
+  }
+  .page h2{
+    font-size:clamp(1.7rem, 4vw, 2.5rem);
+    margin-bottom:1.4rem;
+    font-style:italic;
+  }
+  .page p{
+    font-size:1.08rem;
+    line-height:1.85;
+    color:#6d585f;
+    max-width:48ch;
+    margin:0 auto;
+  }
+
+  /* ---------- REASONS LIST ---------- */
+  .reasons{
+    display:flex;
+    flex-direction:column;
+    gap:1.1rem;
+    margin-top:2.4rem;
+    width:100%;
+    max-width:520px;
+  }
+  .reason{
+    display:flex;
+    align-items:flex-start;
+    gap:0.9rem;
+    text-align:left;
+    background:rgba(255,255,255,0.55);
+    border:1px solid rgba(221,156,170,0.25);
+    border-radius:18px;
+    padding:1.05rem 1.3rem;
+    backdrop-filter:blur(6px);
+    box-shadow:0 10px 30px -18px rgba(91,64,72,0.3);
+  }
+  .reason .icon{
+    font-size:1.3rem;
+    line-height:1.4;
+    flex-shrink:0;
+  }
+  .reason p{
+    font-size:0.98rem;
+    line-height:1.6;
+    color:#6d585f;
+    margin:0;
+  }
+  .reason strong{ color:var(--mauve-deep); font-weight:600; }
+
+  /* ---------- FINALE ---------- */
+  .finale{ gap:1.2rem; }
+  .bud-wrap{
+    width:220px;
+    height:220px;
+    margin-bottom:0.4rem;
+  }
+  #flower-svg{ width:100%; height:100%; overflow:visible; }
+  .petal-shape{
+    transform-origin: 100px 130px;
+    transition: transform 1.4s cubic-bezier(.22,1.4,.36,1), opacity 1s ease;
+  }
+  .bloomed .petal-shape{ opacity:1; }
+
+  .sorry-btn{
+    font-family:'Quicksand', sans-serif;
+    font-weight:700;
+    font-size:1rem;
+    letter-spacing:0.02em;
+    color:#fff;
+    background: linear-gradient(135deg, var(--rose), #c98198);
+    border:none;
+    padding:1rem 2.4rem;
+    border-radius:999px;
+    cursor:pointer;
+    box-shadow: 0 14px 34px -12px rgba(221,156,170,0.7);
+    transition: transform 0.35s cubic-bezier(.22,1.4,.36,1), box-shadow 0.35s ease, opacity 0.6s ease;
+    margin-top:1.6rem;
+  }
+  .sorry-btn:hover{ transform:translateY(-3px) scale(1.03); box-shadow:0 18px 40px -12px rgba(221,156,170,0.85); }
+  .sorry-btn:active{ transform:translateY(0) scale(0.98); }
+  .sorry-btn.hidden{ opacity:0; pointer-events:none; height:0; margin:0; padding:0; overflow:hidden; }
+
+  .finale-msg{
+    max-width:52ch;
+    opacity:0;
+    transform:translateY(14px);
+    transition: opacity 1s ease 0.3s, transform 1s ease 0.3s;
+    margin-top:0.4rem;
+  }
+  .finale-msg.show{ opacity:1; transform:translateY(0); }
+  .finale-msg h2{ font-size:clamp(1.8rem,4.5vw,2.6rem); font-style:italic; margin-bottom:0.9rem; }
+  .finale-msg p{ font-size:1.05rem; line-height:1.85; color:#6d585f; }
+  .finale-msg .signoff{
+    margin-top:1.6rem;
+    font-family:'Caveat', cursive;
+    font-size:1.9rem;
+    color:var(--rose);
+  }
+
+  .forgive-row{
+    margin-top:2.2rem;
+    display:flex;
+    gap:0.9rem;
+    flex-wrap:wrap;
+    justify-content:center;
+    opacity:0;
+    transform:translateY(10px);
+    transition: opacity 0.9s ease 0.9s, transform 0.9s ease 0.9s;
+  }
+  .forgive-row.show{ opacity:1; transform:translateY(0); }
+  .forgive-btn{
+    font-family:'Quicksand', sans-serif;
+    font-weight:600;
+    font-size:0.92rem;
+    padding:0.75rem 1.5rem;
+    border-radius:999px;
+    cursor:pointer;
+    transition: all 0.3s ease;
+  }
+  .forgive-btn.yes{
+    background:var(--mauve-deep);
+    color:#fff;
+    border:none;
+  }
+  .forgive-btn.yes:hover{ background:#4a3239; transform:translateY(-2px); }
+  .forgive-btn.hug{
+    background:transparent;
+    color:var(--mauve-deep);
+    border:1.5px solid rgba(91,64,72,0.35);
+  }
+  .forgive-btn.hug:hover{ background:rgba(91,64,72,0.06); }
+
+  .after-yes{
+    margin-top:1.6rem;
+    font-family:'Caveat', cursive;
+    font-size:1.7rem;
+    color:var(--sage);
+    opacity:0;
+    transform:scale(0.9);
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(.22,1.4,.36,1);
+  }
+  .after-yes.show{ opacity:1; transform:scale(1); }
+
+  footer{
+    position:relative; z-index:3;
+    text-align:center;
+    padding:3rem 1rem 3.5rem;
+    font-size:0.78rem;
+    letter-spacing:0.08em;
+    color:#b79aa1;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .petal{ animation:none; display:none; }
+    .reveal{ transition:none; opacity:1; transform:none; }
+    html{ scroll-behavior:auto; }
+  }
+
+  @media (max-width:480px){
+    section{ padding:9vh 7vw; }
+    .reason{ padding:0.9rem 1.05rem; }
+  }
+</style>
+</head>
+<body>
+
+<div id="petal-field"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="hero-vine" viewBox="0 0 300 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 40 C 60 10, 100 55, 150 30 S 240 10, 290 35" stroke="var(--sage)" stroke-width="2" stroke-linecap="round" opacity="0.55"/>
+    <circle cx="70" cy="24" r="4" fill="var(--rose)" opacity="0.7"/>
+    <circle cx="150" cy="30" r="5" fill="var(--blush)" stroke="var(--rose)" stroke-width="1"/>
+    <circle cx="220" cy="17" r="3.5" fill="var(--lavender)" opacity="0.8"/>
+  </svg>
+  <p class="eyebrow reveal in">a small letter for</p>
+  <h1 class="reveal in"><span class="name">Rishita</span></h1>
+  <p class="sub reveal in">I heard what you said, and it completely hit me.<br>Will you read this all the way to the end?</p>
+  <div class="scroll-hint">
+    <span>keep scrolling</span>
+    <span>↓</span>
+  </div>
+</section>
+
+<!-- PAGE 1 -->
+<section class="page">
+  <div class="mark reveal">"</div>
+  <h2 class="reveal">I realize I've been pushing you to a breaking point.</h2>
+  <p class="reveal">
+    When you said I force you to behave this way, it made me stop and look at myself. 
+    I hate that instead of being a safe space, I've made you feel cornered, defensive, and completely drained. 
+    There are no excuses or deflections. I put that pressure on you, and I am genuinely sorry.
+  </p>
+</section>
+
+<!-- PAGE 2 -->
+<section class="page">
+  <p class="eyebrow reveal">what I actually mean</p>
+  <h2 class="reveal">Maafi mere andar hai...</h2>
+  <div class="reasons">
+    <div class="reason reveal">
+      <span class="icon">🌱</span>
+      <p><strong>The remorse is real</strong> — I am not saying sorry just to clear the air or end the argument. I am letting my pride down completely because hurting you matters to me.</p>
+    </div>
+    <div class="reason reveal">
+      <span class="icon">🫧</span>
+      <p><strong>I understand your reaction</strong> — Your distance, your anger, and your sharpness aren't "just how you're acting." They are a direct response to how I've treated you, and I see that now.</p>
+    </div>
+    <div class="reason reveal">
+      <span class="icon">🕊️</span>
+      <p><strong>No pressure to move on instantly</strong> — I don't expect you to brush this off. I just want to prove to you that I can drop the scorecard and actually be careful with your heart.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINALE -->
+<section class="page finale">
+  <div class="bud-wrap">
+    <svg id="flower-svg" viewBox="0 0 200 220">
+      <line x1="100" y1="130" x2="100" y2="215" stroke="var(--sage)" stroke-width="4" stroke-linecap="round"/>
+      <path d="M100 190 C 80 190, 70 175, 78 165 C 88 175, 95 182, 100 190Z" fill="var(--sage)"/>
+      <g id="petals-group">
+        <ellipse class="petal-shape" cx="100" cy="95" rx="20" ry="38" fill="var(--rose)" transform="rotate(0 100 130) scale(0.15)"/>
+        <ellipse class="petal-shape" cx="100" cy="95" rx="20" ry="38" fill="#e8aeb9" transform="rotate(51 100 130) scale(0.15)"/>
+        <ellipse class="petal-shape" cx="100" cy="95" rx="20" ry="38" fill="var(--rose)" transform="rotate(102 100 130) scale(0.15)"/>
+        <ellipse class="petal-shape" cx="100" cy="95" rx="20" ry="38" fill="#e8aeb9" transform="rotate(153 100 130) scale(0.15)"/>
+        <ellipse class="petal-shape" cx="100" cy="95" rx="20" ry="38" fill="var(--rose)" transform="rotate(204 100 130) scale(0.15)"/>
+        <ellipse class="petal-shape" cx="100" cy="95" rx="20" ry="38" fill="#e8aeb9" transform="rotate(255 100 130) scale(0.15)"/>
+        <ellipse class="petal-shape" cx="100" cy="95" rx="20" ry="38" fill="var(--rose)" transform="rotate(306 100 130) scale(0.15)"/>
+      </g>
+      <circle cx="100" cy="130" r="12" fill="var(--gold)"/>
+    </svg>
+  </div>
+
+  <p class="eyebrow reveal">last page</p>
+  <h2 class="reveal" style="font-style:italic;">for you, always</h2>
+
+  <button class="sorry-btn reveal" id="sorryBtn">tap this, Rishita 🌸</button>
+
+  <div class="finale-msg" id="finaleMsg">
+    <h2>I am truly sorry, <span class="script">Rishita.</span></h2>
+    <p>
+      I don't ever want to make you feel like you have to change who you are or behave harshly just to protect yourself from me. You deserve patience, softness, and someone who actually listens when you're hurt. I'm stepping up to be that person, starting right now.
+      <br><br>
+      Thank you for holding a mirror up to me, even when it was painful.
+    </p>
+    <p class="signoff">— always, with all my heart</p>
+
+    <div class="forgive-row" id="forgiveRow">
+      <button class="forgive-btn yes" id="yesBtn">Let's drop the score 🤍</button>
+      <button class="forgive-btn hug" id="hugBtn">I need a hug first 🫂</button>
+    </div>
+    <p class="after-yes" id="afterYes"></p>
+  </div>
+</section>
+
+<footer>made with a lot of thought, for Rishita 🌷</footer>
+
+<script>
+  // ---------- petal field ----------
+  const field = document.getElementById('petal-field');
+  const petalColors = ['var(--rose)', 'var(--blush)', 'var(--lavender)'];
+  function makePetal(){
+    const p = document.createElement('div');
+    p.className = 'petal';
+    const size = 10 + Math.random()*10;
+    const left = Math.random()*100;
+    const duration = 9 + Math.random()*8;
+    const delay = Math.random()*-20;
+    const drift = (Math.random()*140 - 70) + 'px';
+    p.style.left = left + 'vw';
+    p.style.setProperty('--drift', drift);
+    p.style.animationDuration = duration + 's';
+    p.style.animationDelay = delay + 's';
+    const color = petalColors[Math.floor(Math.random()*petalColors.length)];
+    p.innerHTML = `<svg width="${size}" height="${size}" viewBox="0 0 20 20">
+      <path d="M10 0 C16 4, 16 14, 10 20 C4 14, 4 4, 10 0Z" fill="${color}"/>
+    </svg>`;
+    field.appendChild(p);
+  }
+  for(let i=0;i<22;i++) makePetal();
+
+  // ---------- scroll reveal ----------
+  const revealEls = document.querySelectorAll('.reveal:not(.in)');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.25});
+  revealEls.forEach(el=>io.observe(el));
+
+  // stagger reasons slightly
+  document.querySelectorAll('.reason').forEach((el,i)=>{
+    el.style.transitionDelay = (i*0.12)+'s';
+  });
+
+  // ---------- bloom + finale ----------
+  const sorryBtn = document.getElementById('sorryBtn');
+  const finaleMsg = document.getElementById('finaleMsg');
+  const flowerSvg = document.getElementById('flower-svg');
+  const forgiveRow = document.getElementById('forgiveRow');
+
+  function burstHearts(){
+    const heartColors = ['💗','💖','🌸','✨'];
+    for(let i=0;i<26;i++){
+      const h = document.createElement('div');
+      h.textContent = heartColors[Math.floor(Math.random()*heartColors.length)];
+      h.style.position='fixed';
+      h.style.left = (45 + Math.random()*10) + 'vw';
+      h.style.bottom = '20vh';
+      h.style.fontSize = (14 + Math.random()*16) + 'px';
+      h.style.pointerEvents='none';
+      h.style.zIndex = 50;
+      h.style.transition = 'transform 1.6s cubic-bezier(.15,.8,.3,1), opacity 1.6s ease';
+      document.body.appendChild(h);
+      requestAnimationFrame(()=>{
+        const x = (Math.random()*300 - 150);
+        const y = -(200 + Math.random()*260);
+        h.style.transform = `translate(${x}px, ${y}px) rotate(${Math.random()*360}deg)`;
+        h.style.opacity = '0';
+      });
+      setTimeout(()=>h.remove(), 1700);
+    }
+  }
+
+  sorryBtn.addEventListener('click', ()=>{
+    flowerSvg.classList.add('bloomed');
+    document.querySelectorAll('.petal-shape').forEach((p, i)=>{
+      const rotation = p.getAttribute('transform').match(/rotate\(([-0-9.]+)/)[1];
+      setTimeout(()=>{
+        p.style.transform = `rotate(${rotation}deg) scale(1)`;
+      }, i*70);
+    });
+    burstHearts();
+    sorryBtn.classList.add('hidden');
+    setTimeout(()=>{
+      finaleMsg.classList.add('show');
+      setTimeout(()=> forgiveRow.classList.add('show'), 900);
+    }, 300);
+  });
+
+  const yesBtn = document.getElementById('yesBtn');
+  const hugBtn = document.getElementById('hugBtn');
+  const afterYes = document.getElementById('afterYes');
+
+  yesBtn.addEventListener('click', ()=>{
+    afterYes.textContent = 'Thank you, Rishita. Let\'s breathe and start fresh 🤍';
+    afterYes.classList.add('show');
+    burstHearts();
+  });
+  hugBtn.addEventListener('click', ()=>{
+    afterYes.textContent = 'No matter what happens or how tough things get, I promise to protect your peace and take care of your heart at any cost. 🫂';
+    afterYes.classList.add('show');
+  });
+</script>
+
+</body>
+</html>
